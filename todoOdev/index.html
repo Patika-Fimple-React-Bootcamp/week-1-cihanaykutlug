@@ -81,8 +81,8 @@
         data.forEach(item => {
           const liElement = document.createElement('li');
           liElement.classList.add("list-group-item");
-          liElement.innerHTML = `<input class="form-check-input me-1" type="checkbox" ${item.completed == true ? "checked" : ""} id="${item.id}">
-            <label class="form-check-label stretched-link  ${item.completed == true ? "text-decoration-line-through" : ""}" for="${item.id}" >${item.title}</label>`;
+          liElement.innerHTML = `<input class="form-check-input me-1" type="checkbox" onchange="completed('${item.id}')" ${item.completed == true ? "checked" : ""} id="${item.id}">
+            <label class="form-check-label stretched-link  ${item.completed == true ? "text-decoration-line-through" : ""}" id="t${item.id}" for="${item.id}" >${item.title}</label>`;
           todosContainer.appendChild(liElement);
     
         })
@@ -121,8 +121,8 @@
         const todosContainer = document.querySelector('.todos');
         const liElement = document.createElement('li');
         liElement.classList.add("list-group-item");
-        liElement.innerHTML = `<input class="form-check-input me-1" type="checkbox" ${action.checked == true ? "checked" : ""} id="${sayi}">
-            <label class="form-check-label stretched-link  ${action.checked == true ? "text-decoration-line-through" : ""}" for="${sayi}" >${todo.value}</label>`;
+        liElement.innerHTML = `<input class="form-check-input me-1" type="checkbox" onchange="completed('${sayi}')" ${action.checked == true ? "checked" : ""} id="${sayi}">
+            <label class="form-check-label stretched-link  ${action.checked == true ? "text-decoration-line-through" : ""}" id="t${sayi}" for="${sayi}" >${todo.value}</label>`;
         todosContainer.appendChild(liElement);
         todo.classList.remove("is-valid")
         sayi++;
@@ -131,7 +131,14 @@
       document.querySelector("#todoForm").reset();
       todo.focus()
     });
-
+function completed(x){
+  var label = document.getElementById("t"+x);
+  if (document.getElementById(x).checked) {
+                label.classList.add("text-decoration-line-through");
+            } else {
+                label.classList.remove("text-decoration-line-through");
+            }
+}
   </script>
 </body>
 
