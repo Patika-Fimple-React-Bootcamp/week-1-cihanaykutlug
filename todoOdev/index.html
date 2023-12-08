@@ -54,9 +54,13 @@
           </div>
         </form>
       </div>
-      <div class="col-md-6 col-lg-6  d-flex align-items-center justify-content-center overflow-hidden">
+      <div class="col-md-6 col-lg-6  d-flex align-items-center justify-content-center flex-column overflow-hidden">
 
-
+        <div class="d-flex justify-content-center" id="loading">
+          <div class="spinner-grow text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
         <ul class="list-group w-100 todos  overflow-y-auto h-75">
 
         </ul>
@@ -74,10 +78,12 @@
     
   <script>
     document.addEventListener('DOMContentLoaded', function () {
+      let loadingBar = document.querySelector("#loading")
       
       const printData = (data) => {
 
         const todosContainer = document.querySelector('.todos');
+        loadingBar.setAttribute('style', 'display:none !important');
         data.forEach(item => {
           const liElement = document.createElement('li');
           liElement.classList.add("list-group-item");
